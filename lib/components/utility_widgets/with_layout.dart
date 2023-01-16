@@ -1,38 +1,59 @@
 import "package:flutter/material.dart";
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:todo_list/bloc/cubits/google_sign_in_cubit.dart';
 
 Widget withLayout(
     {required BuildContext context,
     required Widget child,
     String title = "Appbar"}) {
   return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.all(4),
-          child: Text(title),
-        ),
-        elevation: 2,
-        titleTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            fontFamily: "NotoSerifNPHmong"),
-        // backgroundColor: const Color.fromRGBO(100, 100, 100, 0.8)
-        // foregroundColor: Colors.black87,
-      ),
+      appBar: AppbarWidget(
+        title: title,
+      ).build(context),
       body: SafeArea(child: Center(child: child)),
-      floatingActionButton: (GoRouter.of(context).location != "/about")
-          ? FloatingActionButton(
-              onPressed: () {
-                GoRouter.of(context).push("/about");
-              },
-              child: const Icon(Icons.add),
-            )
-          : null);
+      floatingActionButton: FloatingActionButtonWidget().build(context));
 }
 
-//
-// (GoRouter.of(context).location == "/about")?
-// floatingActionButton: FloatingActionButton(onPressed: (){
-// GoRouter.of(context).go("/about");
-// },child: const Icon(Icons.add),):null,
+class AppbarWidget {
+  final String title;
+  const AppbarWidget({required this.title});
+
+  PreferredSizeWidget build(BuildContext context) {
+    return AppBar(
+      title: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+          child: Text(title)),
+      actions: [
+        IconButton(
+            onPressed: () {
+              BlocProvider.of<GoogleSignInCubit>(context).signOut();
+              // FirebaseAuth.instance.signOut();
+            },
+            icon: const Icon(Icons.logout)),
+        const Padding(padding: EdgeInsets.only(right: 10))
+      ],
+      elevation: 2,
+      titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          fontFamily: "NotoSerifNPHmong"),
+      // backgroundColor: const Color.fromRGBO(100, 100, 100, 0.8)
+      // foregroundColor: Colors.black87,
+    );
+  }
+}
+
+class FloatingActionButtonWidget {
+  Widget? build(BuildContext context) {
+    return ((GoRouter.of(context).location != "/about")
+        ? FloatingActionButton(
+            onPressed: () {
+              GoRouter.of(context).push("/about");
+            },
+            child: const Icon(Icons.add),
+          )
+        : null);
+  }
+}

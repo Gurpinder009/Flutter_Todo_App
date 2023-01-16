@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:todo_list/bloc/cubits/todo_cubit_list.dart';
 // import 'package:todo_list/Bloc/counter_cubit.dart';
 import "../utility_widgets/with_layout.dart";
 
@@ -89,8 +91,12 @@ class _AddTodoWidgetState extends State<AddTodoWidget> {
               ElevatedButton(
                   onPressed: () {
                     if (name.currentState!.validate()) {
-                      var snackbar = SnackBar(
-                        content: Text(data.toString()),
+                      BlocProvider.of<TodoListCubit>(context).add(Todo(
+                          id: 6,
+                          heading: data["heading"]!,
+                          description: data["description"]!));
+                      var snackbar = const SnackBar(
+                        content: Text("Your todo is added in the list "),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackbar);
                       setState(() {

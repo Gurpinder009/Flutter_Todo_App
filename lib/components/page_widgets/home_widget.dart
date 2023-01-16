@@ -11,7 +11,6 @@ class HomeWidget extends StatelessWidget {
     return withLayout(
         context: context,
         child: BlocBuilder<TodoListCubit, List<Todo>>(
-            bloc: TodoListCubit(),
             builder: (context, state) => ListView.builder(
                   itemCount: state.length,
                   itemBuilder: (context, index) {
@@ -20,8 +19,7 @@ class HomeWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          // margin: const EdgeInsets.symmetric(vertical: 4),
-                          width: 400,
+                          width: double.infinity,
                           decoration: const BoxDecoration(
                               // color: Color.fromARGB(77, 175, 175, 175),
                               ),
@@ -43,11 +41,11 @@ class HomeWidget extends StatelessWidget {
                                         style: const TextStyle(fontSize: 18),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5),
+                                        padding: const EdgeInsets.fromLTRB(
+                                            5, 5, 0, 0),
                                         child: Text(
                                           state[index].description,
-                                          style: const TextStyle(fontSize: 11),
+                                          style: const TextStyle(fontSize: 12),
                                         ),
                                       ),
                                     ],
