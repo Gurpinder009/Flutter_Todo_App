@@ -1,6 +1,7 @@
-# todo_list3
 
-A new Flutter project.
+# todo_list
+
+for creating todos
 
 ## Getting Started
 

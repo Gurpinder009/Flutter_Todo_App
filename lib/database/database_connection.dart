@@ -3,7 +3,7 @@ import 'dart:developer';
 import "package:sqflite/sqflite.dart";
 import "package:path/path.dart" as path;
 
-class DatabaseClass {
+class DatabaseConnection {
   static Database? instance;
   static Future<Database> getInstance() async {
     var databasePath = await getDatabasesPath();

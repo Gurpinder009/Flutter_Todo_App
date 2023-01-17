@@ -2,9 +2,9 @@ import "package:flutter/material.dart";
 import 'package:todo_list3/database/model_interfaces/todo_db.dart';
 import 'package:todo_list3/presention/layout/with_layout.dart';
 
-class TodoPage extends StatelessWidget {
+class TodoPageWidget extends StatelessWidget {
   final int id;
-  const TodoPage({super.key, required this.id});
+  const TodoPageWidget({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {

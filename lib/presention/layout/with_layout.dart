@@ -39,8 +39,6 @@ class AppbarWidget {
           fontSize: 24,
           fontWeight: FontWeight.bold,
           fontFamily: "NotoSerifNPHmong"),
-      // backgroundColor: const Color.fromRGBO(100, 100, 100, 0.8)
-      // foregroundColor: Colors.black87,
     );
   }
 }

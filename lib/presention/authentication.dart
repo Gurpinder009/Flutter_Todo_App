@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/bloc/cubits/google_sign_in_cubit.dart';
-import 'package:todo_list/components/others/router_list.dart';
+import 'package:todo_list3/bloc/google_sign_in_cubit.dart';
+import 'package:todo_list3/router.dart';
 
 class AuthenicationWidget extends StatelessWidget {
   const AuthenicationWidget({Key? key}) : super(key: key);
