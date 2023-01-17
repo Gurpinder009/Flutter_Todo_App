@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:todo_list/bloc/cubits/todo_cubit_list.dart';
-// import 'package:todo_list/Bloc/counter_cubit.dart';
-import "../utility_widgets/with_layout.dart";
+import 'package:todo_list3/bloc/todo_list_cubit.dart';
+import 'package:todo_list3/database/model_classes/todo.dart';
+import 'package:todo_list3/presention/layout/with_layout.dart';
 
 class AboutWidget extends StatelessWidget {
   const AboutWidget({super.key});
@@ -92,7 +91,10 @@ class _AddTodoWidgetState extends State<AddTodoWidget> {
                   onPressed: () {
                     if (name.currentState!.validate()) {
                       BlocProvider.of<TodoListCubit>(context).add(Todo(
-                          id: 6,
+                          id: BlocProvider.of<TodoListCubit>(context)
+                                  .state
+                                  .length +
+                              1,
                           heading: data["heading"]!,
                           description: data["description"]!));
                       var snackbar = const SnackBar(

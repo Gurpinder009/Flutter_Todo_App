@@ -24,9 +24,9 @@ class GoogleSignInCubit extends Cubit<GoogleSignInState> {
 
         await FirebaseAuth.instance.signInWithCredential(credential);
       }
-    }on PlatformException catch (e) {
+    } on PlatformException catch (e) {
       print("----------------${e.message}");
-    }catch(e){
+    } catch (e) {
       print(e);
     }
   }
@@ -44,7 +44,6 @@ class GoogleSignInCubit extends Cubit<GoogleSignInState> {
 
   @override
   void onError(Object error, StackTrace stackTrace) {
-
     super.onError(error, stackTrace);
   }
 }

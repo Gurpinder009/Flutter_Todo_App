@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/bloc/cubits/todo_cubit_list.dart';
-import 'package:todo_list/components/utility_widgets/with_layout.dart';
+import 'package:go_router/go_router.dart';
+import 'package:todo_list3/bloc/todo_list_cubit.dart';
+import 'package:todo_list3/database/model_classes/todo.dart';
+import 'package:todo_list3/presention/layout/with_layout.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
@@ -27,7 +29,8 @@ class HomeWidget extends StatelessWidget {
                               highlightColor:
                                   const Color.fromARGB(66, 38, 38, 38),
                               onTap: () {
-                                print(state[index].heading);
+                                GoRouter.of(context).pushNamed("/todo",
+                                    params: {"id": state[index].id.toString()});
                               },
                               child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -44,6 +47,8 @@ class HomeWidget extends StatelessWidget {
                                         padding: const EdgeInsets.fromLTRB(
                                             5, 5, 0, 0),
                                         child: Text(
+                                          maxLines: 1,
+                                          overflow: TextOverflow.clip,
                                           state[index].description,
                                           style: const TextStyle(fontSize: 12),
                                         ),
